@@ -1,0 +1,128 @@
+:root {
+    --spam: #dc2626;
+    --spam-bg: #fee2e2;
+    --work: #2563eb;
+    --work-bg: #dbeafe;
+    --personal: #16a34a;
+    --personal-bg: #dcfce7;
+    --text: #1f2937;
+    --muted: #64748b;
+    --border: #d1d5db;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(160deg, #eef4ff, #f4f7fb 50%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.container { width: 92%; max-width: 860px; margin: 40px auto; }
+
+header { text-align: center; margin-bottom: 28px; }
+.logo { font-size: 42px; margin-bottom: 6px; }
+header h1 { font-size: 34px; margin-bottom: 8px; color: #0f2a5c; }
+header p { color: var(--muted); }
+.legend { margin-top: 14px; display: flex; gap: 8px; justify-content: center; }
+
+.card {
+    background: #fff;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(15, 42, 92, 0.08);
+    margin-bottom: 24px;
+}
+.card h2 { margin-bottom: 16px; font-size: 20px; }
+
+textarea {
+    width: 100%;
+    height: 200px;
+    resize: vertical;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+    outline: none;
+}
+textarea:focus { border-color: var(--work); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+.counter { text-align: right; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.buttons { display: flex; gap: 10px; margin-top: 16px; }
+
+button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--work);
+    color: #fff;
+    transition: opacity 0.15s, transform 0.1s;
+}
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+button.clear { background: var(--muted); }
+
+.error {
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: var(--spam-bg);
+    color: var(--spam);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.result {
+    margin-top: 24px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+.result h3 { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.conf-text { margin-top: 12px; }
+
+.badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.badge-large { font-size: 26px; padding: 8px 28px; margin-top: 14px; }
+.badge-spam, .result.spam .badge-large { background: var(--spam-bg); color: var(--spam); }
+.badge-work, .result.work .badge-large { background: var(--work-bg); color: var(--work); }
+.badge-personal, .result.personal .badge-large { background: var(--personal-bg); color: var(--personal); }
+
+.meter { height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 12px auto 0; max-width: 360px; }
+.meter-fill { height: 100%; width: 0; border-radius: 999px; transition: width 0.5s ease; background: var(--work); }
+.result.spam .meter-fill { background: var(--spam); }
+.result.personal .meter-fill { background: var(--personal); }
+
+.breakdown { margin: 18px auto 0; max-width: 360px; text-align: left; }
+.break-row { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-top: 8px; }
+.break-label { width: 70px; color: var(--muted); }
+.break-bar { flex: 1; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+.break-bar span { display: block; height: 100%; border-radius: 999px; }
+.break-val { width: 48px; text-align: right; font-variant-numeric: tabular-nums; }
+
+.example-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.ex-spam { background: var(--spam); }
+.ex-work { background: var(--work); }
+.ex-personal { background: var(--personal); }
+
+.hidden { display: none; }
+
+@media (max-width: 600px) {
+    .container { margin: 20px auto; }
+    header h1 { font-size: 26px; }
+    .card { padding: 20px; }
+    .buttons, .example-row { flex-direction: column; }
+    button { width: 100%; }
+}

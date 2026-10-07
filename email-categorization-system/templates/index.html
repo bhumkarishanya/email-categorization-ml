@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Categorization System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <div class="logo">✉️</div>
+            <h1>Email Categorization System</h1>
+            <p>AI-powered email classification using NLP, TF-IDF and Machine Learning</p>
+            <div class="legend">
+                <span class="badge badge-spam">Spam</span>
+                <span class="badge badge-work">Work</span>
+                <span class="badge badge-personal">Personal</span>
+            </div>
+        </header>
+
+        <main class="card">
+            <h2>Analyze Email</h2>
+
+            <textarea id="emailText" maxlength="10000" placeholder="Paste your email here..."></textarea>
+            <div class="counter"><span id="charCount">0</span> / 10000</div>
+
+            <div class="buttons">
+                <button id="predictBtn" onclick="predictEmail()">Classify Email</button>
+                <button class="clear" onclick="clearEmail()">Clear</button>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+
+            <div id="result" class="result hidden">
+                <h3>Prediction</h3>
+                <div id="category" class="badge badge-large"></div>
+                <p class="conf-text">Confidence: <strong><span id="confidence"></span>%</strong></p>
+
+                <div class="meter"><div id="meterFill" class="meter-fill"></div></div>
+
+                <div id="breakdown" class="breakdown"></div>
+            </div>
+        </main>
+
+        <section class="examples card">
+            <h2>Try an Example</h2>
+            <div class="example-row">
+                <button class="ex ex-spam" onclick="useExample('spam')">Spam Example</button>
+                <button class="ex ex-work" onclick="useExample('work')">Work Example</button>
+                <button class="ex ex-personal" onclick="useExample('personal')">Personal Example</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
